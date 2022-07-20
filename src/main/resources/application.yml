@@ -1,0 +1,11 @@
+spring:
+  datasource:
+    name: day_record  #数据库名
+    url: jdbc:mysql://localhost:3306/day_record #url
+    username: root  #用户名
+    password: 1234qwer  #密码
+    driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
+
+mybatis:
+  mapper-locations: classpath:mapper/*.xml  #配置映射文件
+  type-aliases-package: com.day_record.server.bean #配置实体类

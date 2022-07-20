@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.day_record.server.mapper.YearTaskMapper">
+
+    <select id="getAllYearTasks" resultType="com.day_record.server.bean.YearTaskBean">
+        SELECT * FROM year_task
+    </select>
+
+<!--    void insertYearTask(YearTaskBean yearTaskBean);-->
+
+<!--    void updateYearTask(YearTaskBean yearTaskBean);-->
+
+
+
+<!--    <select id="getUserByName" parameterType="String" resultType="com.jc.test.bean.UserBean">-->
+<!--        SELECT * FROM user WHERE name = #{name}-->
+<!--    </select>-->
+
+<!--    <select id="getAgeByName" parameterType="String" resultType="int">-->
+<!--        SELECT age FROM user WHERE name = #{name}-->
+<!--    </select>-->
+
+    <insert id="insertYearTask" parameterType="com.day_record.server.bean.YearTaskBean">
+        insert into year_task (id, Task_name, Target, Progress, Create_date, Finish_date, Is_finish)
+        value (#{id}, #{taskName}, #{target}, #{progress}, #{createDate}, #{finishDate}, #{isFinish})
+    </insert>
+
+    <update id="updateYearTask">
+        update year_task set Task_name=#{taskName}, Target=#{target}, Progress=#{progress}, Create_date=#{createDate}, Finish_date=#{finishDate}, Is_finish=#{isFinish} where id=#{id}
+    </update>
+
+<!--    <update id="updateUserNameById">-->
+<!--        update user set name=#{name} where id=#{id}-->
+<!--    </update>-->
+
+<!--    <delete id="deleteUserById">-->
+<!--        delete from user where id=#{id}-->
+<!--    </delete>-->
+</mapper>
