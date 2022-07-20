@@ -13,10 +13,10 @@ public class BaseBean<T> {
         this.msg = "success";
     }
 
-    public BaseBean(int code, T data, Long dts, String msg) {
+    public BaseBean(int code, T data, String msg) {
         this.code = code;
         this.data = data;
-        this.dts = dts;
+        this.dts = System.currentTimeMillis();
         this.msg = msg;
     }
 

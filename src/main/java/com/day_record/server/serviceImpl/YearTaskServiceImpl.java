@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Map;
 
 @Service
 public class YearTaskServiceImpl implements YearTaskService {
@@ -15,8 +16,18 @@ public class YearTaskServiceImpl implements YearTaskService {
     private YearTaskMapper yearTaskMapper;
 
     @Override
-    public List<YearTaskBean> getAllUsers() {
+    public List<YearTaskBean> getAllYearTasks() {
         return yearTaskMapper.getAllYearTasks();
+    }
+
+    @Override
+    public YearTaskBean getYearTaskById(int id) {
+        return yearTaskMapper.getYearTaskById(id);
+    }
+
+    @Override
+    public YearTaskBean getYearTaskByMap(Map<String, String> conditionMap) {
+        return yearTaskMapper.getYearTaskByMap(conditionMap);
     }
 
     @Override
@@ -27,5 +38,10 @@ public class YearTaskServiceImpl implements YearTaskService {
     @Override
     public void updateYearTask(YearTaskBean yearTaskBean) {
         yearTaskMapper.updateYearTask(yearTaskBean);
+    }
+
+    @Override
+    public void deleteYearTaskById(int id) {
+        yearTaskMapper.deleteYearTaskById(id);
     }
 }

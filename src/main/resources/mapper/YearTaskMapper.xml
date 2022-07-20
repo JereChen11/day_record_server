@@ -6,10 +6,14 @@
         SELECT * FROM year_task
     </select>
 
-<!--    void insertYearTask(YearTaskBean yearTaskBean);-->
 
-<!--    void updateYearTask(YearTaskBean yearTaskBean);-->
+    <select id="getYearTaskById" resultType="com.day_record.server.bean.YearTaskBean">
+        SELECT * FROM year_task WHERE id=#{id}
+    </select>
 
+    <select id="getYearTaskByMap" parameterType="java.util.Map" resultType="com.day_record.server.bean.YearTaskBean">
+        SELECT * FROM year_task WHERE Task_name=#{taskName} AND Create_date=#{createDate}
+    </select>
 
 
 <!--    <select id="getUserByName" parameterType="String" resultType="com.jc.test.bean.UserBean">-->
@@ -29,11 +33,19 @@
         update year_task set Task_name=#{taskName}, Target=#{target}, Progress=#{progress}, Create_date=#{createDate}, Finish_date=#{finishDate}, Is_finish=#{isFinish} where id=#{id}
     </update>
 
-<!--    <update id="updateUserNameById">-->
-<!--        update user set name=#{name} where id=#{id}-->
-<!--    </update>-->
+    <delete id="deleteYearTaskById">
+        delete from year_task where id=#{id}
+    </delete>
 
-<!--    <delete id="deleteUserById">-->
-<!--        delete from user where id=#{id}-->
-<!--    </delete>-->
+
+
+
+
+
+
+
+
+
+
+
 </mapper>

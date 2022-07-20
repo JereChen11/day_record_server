@@ -21,8 +21,8 @@ class DayRecordServerApplicationTests {
         /*
          * test insertYearTask
          */
-        YearTaskBean insertTask = new YearTaskBean(0, "hei ha", 221, 0, "2022-7-19", null, 0);
-        yearTaskService.insertYearTask(insertTask);
+//        YearTaskBean insertTask = new YearTaskBean(0, "hei ha", 221, 0, "2022-7-19", null, 0);
+//        yearTaskService.insertYearTask(insertTask);
 
 
         /*
@@ -33,6 +33,11 @@ class DayRecordServerApplicationTests {
 //                        121, 0, "2022-7-19", null, 0);
 //        System.out.println("update...");
 //        yearTaskService.updateYearTask(updateTask);
+
+        /**
+         * delete year task by id
+         */
+        yearTaskService.deleteYearTaskById(0);
     }
 
 }
