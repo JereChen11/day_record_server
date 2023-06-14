@@ -36,13 +36,18 @@ public class TaskController {
 
     @GetMapping("/year/get_year_task_by_map")
     public BaseBean<YearTaskBean> getYearTaskByMap(@RequestParam Map<String, String> map) {
+        //这里需要对客户端传过来的 request params 进行处理判断。
         System.out.println("taskName" + map.get("taskName"));
         System.out.println("createDate" + map.get("createDate"));
+        if (map.get("taskName") == null || map.get("createDate") == null) {
+            return new BaseBean<YearTaskBean>(403, null, "params error, please check params again.");
+        }
+
         YearTaskBean yearTaskBean = yearTaskService.getYearTaskByMap(map);
         if (yearTaskBean != null) {
             return new BaseBean<YearTaskBean>(200, yearTaskBean, "success");
         } else {
-            return new BaseBean<YearTaskBean>(303, null, "can't find the year task");
+            return new BaseBean<YearTaskBean>(403, null, "can't find this year task");
         }
     }
 
