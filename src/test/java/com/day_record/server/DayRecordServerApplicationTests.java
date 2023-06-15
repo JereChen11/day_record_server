@@ -8,6 +8,10 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
+
 @RunWith(SpringRunner.class)
 @SpringBootTest
 class DayRecordServerApplicationTests {
@@ -18,11 +22,20 @@ class DayRecordServerApplicationTests {
     @Test
     void contextLoads() {
 
+        Date createDate = new Date();
+        try {
+            createDate = new SimpleDateFormat("yyyy-MM-dd").parse("2022-7-19");
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+
         /*
          * test insertYearTask
          */
-//        YearTaskBean insertTask = new YearTaskBean(0, "hei ha", 221, 0, "2022-7-19", null, 0);
-//        yearTaskService.insertYearTask(insertTask);
+        YearTaskBean insertTask = new YearTaskBean(102L, "练习羽毛球", 100, 5,
+                createDate, null, false);
+
+        yearTaskService.insertYearTask(insertTask);
 
 
         /*
@@ -37,7 +50,7 @@ class DayRecordServerApplicationTests {
         /**
          * delete year task by id
          */
-        yearTaskService.deleteYearTaskById(0);
+//        yearTaskService.deleteYearTaskById(0);
     }
 
 }

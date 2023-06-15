@@ -5,6 +5,9 @@ import com.day_record.server.bean.YearTaskBean;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author JereChen
+ */
 public interface YearTaskMapper {
 
     /**
@@ -20,7 +23,7 @@ public interface YearTaskMapper {
      * @param id
      * @return
      */
-    YearTaskBean getYearTaskById(int id);
+    YearTaskBean getYearTaskById(Long id);
 
     /**
      * 根据指定条件来查询 year task，例如：使用 taskName 与 createDate 来查询
@@ -49,5 +52,5 @@ public interface YearTaskMapper {
      *
      * @param id
      */
-    void deleteYearTaskById(int id);
+    void deleteYearTaskById(Long id);
 }

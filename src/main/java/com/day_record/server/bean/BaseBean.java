@@ -1,7 +1,10 @@
 package com.day_record.server.bean;
 
+/**
+ * @author JereChen
+ */
 public class BaseBean<T> {
-    int code;
+    Integer code;
     T data;
     Long dts;
     String msg;

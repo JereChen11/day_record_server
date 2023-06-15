@@ -9,6 +9,9 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author JereChen
+ */
 @Service
 public class YearTaskServiceImpl implements YearTaskService {
 
@@ -21,7 +24,7 @@ public class YearTaskServiceImpl implements YearTaskService {
     }
 
     @Override
-    public YearTaskBean getYearTaskById(int id) {
+    public YearTaskBean getYearTaskById(Long id) {
         return yearTaskMapper.getYearTaskById(id);
     }
 
@@ -41,7 +44,7 @@ public class YearTaskServiceImpl implements YearTaskService {
     }
 
     @Override
-    public void deleteYearTaskById(int id) {
+    public void deleteYearTaskById(Long id) {
         yearTaskMapper.deleteYearTaskById(id);
     }
 }

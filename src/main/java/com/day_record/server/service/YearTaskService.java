@@ -5,11 +5,14 @@ import com.day_record.server.bean.YearTaskBean;
 import java.util.List;
 import java.util.Map;
 
+/**
+ * @author JereChen
+ */
 public interface YearTaskService {
 
     List<YearTaskBean> getAllYearTasks();
 
-    YearTaskBean getYearTaskById(int id);
+    YearTaskBean getYearTaskById(Long id);
 
     YearTaskBean getYearTaskByMap(Map<String, String> conditionMap);
 
@@ -17,5 +20,5 @@ public interface YearTaskService {
 
     void updateYearTask(YearTaskBean yearTaskBean);
 
-    void deleteYearTaskById(int id);
+    void deleteYearTaskById(Long id);
 }
