@@ -14,6 +14,8 @@ public interface YearTaskService {
 
     YearTaskBean getYearTaskById(Long id);
 
+    List<YearTaskBean> getYearTaskByName(String taskName);
+
     YearTaskBean getYearTaskByMap(Map<String, String> conditionMap);
 
     void insertYearTask(YearTaskBean yearTaskBean);

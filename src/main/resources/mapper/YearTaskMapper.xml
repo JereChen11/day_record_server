@@ -11,6 +11,10 @@
         SELECT * FROM year_task WHERE id=#{id}
     </select>
 
+    <select id="getYearTaskByName" resultType="com.day_record.server.bean.YearTaskBean">
+        SELECT * FROM year_task WHERE task_name=#{taskName}
+    </select>
+
     <select id="getYearTaskByMap" parameterType="java.util.Map" resultType="com.day_record.server.bean.YearTaskBean">
         SELECT * FROM year_task WHERE task_name=#{taskName} AND create_date=#{createDate}
     </select>

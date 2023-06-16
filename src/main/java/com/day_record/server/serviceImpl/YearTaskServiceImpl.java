@@ -29,6 +29,11 @@ public class YearTaskServiceImpl implements YearTaskService {
     }
 
     @Override
+    public List<YearTaskBean> getYearTaskByName(String taskName) {
+        return yearTaskMapper.getYearTaskByName(taskName);
+    }
+
+    @Override
     public YearTaskBean getYearTaskByMap(Map<String, String> conditionMap) {
         return yearTaskMapper.getYearTaskByMap(conditionMap);
     }

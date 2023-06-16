@@ -40,11 +40,20 @@ public class TaskController {
         if (yearTaskBean != null) {
             return new BaseBean<YearTaskBean>(200, yearTaskBean, "success");
         } else {
-            return new BaseBean<YearTaskBean>(303, null, errorMsg);
+            return new BaseBean<YearTaskBean>(403, null, errorMsg);
         }
     }
 
-    //todo getYearTaskByTaskName
+    @GetMapping("/year/get_year_task_by_name")
+    public BaseBean<List<YearTaskBean>> getYearTaskByName(@RequestParam("taskName") String taskName) {
+        String msg = "success";
+        if (!taskName.isBlank()) {
+            return new BaseBean<>(200, yearTaskService.getYearTaskByName(taskName), msg);
+        } else {
+            msg = "params error";
+            return new BaseBean<>(403, null, msg);
+        }
+    }
 
     @GetMapping("/year/get_year_task_by_map")
     public BaseBean<YearTaskBean> getYearTaskByMap(@RequestParam Map<String, String> map) {

@@ -26,6 +26,14 @@ public interface YearTaskMapper {
     YearTaskBean getYearTaskById(Long id);
 
     /**
+     * 通过指定taskName来查询 year task
+     *
+     * @param taskName
+     * @return
+     */
+    List<YearTaskBean> getYearTaskByName(String taskName);
+
+    /**
      * 根据指定条件来查询 year task，例如：使用 taskName 与 createDate 来查询
      *
      * @param conditionMap
