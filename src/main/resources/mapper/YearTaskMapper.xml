@@ -12,7 +12,7 @@
     </select>
 
     <select id="getYearTaskByMap" parameterType="java.util.Map" resultType="com.day_record.server.bean.YearTaskBean">
-        SELECT * FROM year_task WHERE Task_name=#{taskName} AND Create_date=#{createDate}
+        SELECT * FROM year_task WHERE task_name=#{taskName} AND create_date=#{createDate}
     </select>
 
 
@@ -25,12 +25,12 @@
 <!--    </select>-->
 
     <insert id="insertYearTask" parameterType="com.day_record.server.bean.YearTaskBean">
-        insert into year_task (id, Task_name, Target, Progress, Create_date, Finish_date, Is_finish)
+        insert into year_task (id, task_name, target, progress, create_date, finish_date, is_finish)
         value (#{id}, #{taskName}, #{target}, #{progress}, #{createDate}, #{finishDate}, #{isFinish})
     </insert>
 
     <update id="updateYearTask">
-        update year_task set Task_name=#{taskName}, Target=#{target}, Progress=#{progress}, Create_date=#{createDate}, Finish_date=#{finishDate}, Is_finish=#{isFinish} where id=#{id}
+        update year_task set task_name=#{taskName}, target=#{target}, progress=#{progress}, create_date=#{createDate}, finish_date=#{finishDate}, is_finish=#{isFinish} where id=#{id}
     </update>
 
     <delete id="deleteYearTaskById">
