@@ -3,6 +3,8 @@ package com.day_record.server.controller;
 import com.day_record.server.bean.BaseBean;
 import com.day_record.server.bean.YearTaskBean;
 import com.day_record.server.service.YearTaskService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -14,6 +16,7 @@ import java.util.Map;
  */
 @RestController
 public class TaskController {
+    Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     YearTaskService yearTaskService;
@@ -26,6 +29,11 @@ public class TaskController {
 
     @GetMapping("/year/get_year_task_by_id")
     public BaseBean<YearTaskBean> getYearTaskById(@RequestParam("id") Long id) {
+        logger.trace("trace logcat,  test id = " + id);
+        logger.debug("logger debug test id = " + id);
+        logger.warn("logger debug test id = " + id);
+        logger.error("getYearTaskById, id = " + id);
+
 
         YearTaskBean yearTaskBean = null;
         String errorMsg = "can't find the year task by this id";

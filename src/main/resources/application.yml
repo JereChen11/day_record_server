@@ -9,3 +9,8 @@ spring:
 mybatis:
   mapper-locations: classpath:mapper/*.xml  #配置映射文件
   type-aliases-package: com.day_record.server.bean #配置实体类
+
+#logging:
+#  file:
+#    path: /Users/jere/Downloads
+#    name: spring_day_record_log.log
