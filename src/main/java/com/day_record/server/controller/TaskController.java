@@ -64,11 +64,11 @@ public class TaskController {
     }
 
     @GetMapping("/year/get_year_task_by_map")
-    public BaseBean<YearTaskBean> getYearTaskByMap(@RequestParam Map<String, String> map) {
+    public BaseBean<YearTaskBean> getYearTaskByMap(@RequestParam Map<String, Object> map) {
         //todo 这里只是对 taskName 与 createData 进行了处理，那对其它条件没有适配吗？ 而且用的还是AND 用 OR 呢？需考虑
         //这里需要对客户端传过来的 request params 进行处理判断。
-        System.out.println("taskName" + map.get("taskName"));
-        System.out.println("createDate" + map.get("createDate"));
+        logger.info("taskName: " + map.get("taskName"));
+        logger.info("createDate: " + map.get("createDate"));
         if (map.get("taskName") == null || map.get("createDate") == null) {
             return new BaseBean<YearTaskBean>(403, null, "params error, please check params again.");
         }
@@ -84,9 +84,8 @@ public class TaskController {
 
     @PostMapping("/year/insert_year_task")
     public BaseBean<String> insertYearTask(YearTaskBean yearTaskBean) {
-        //todo 需要对新插入的数据进行校验
         String msg;
-        System.out.println("insertYear Task -> " + yearTaskBean.toString());
+        logger.info("insertYear Task -> " + yearTaskBean.toString());
         try {
             yearTaskService.insertYearTask(yearTaskBean);
             msg = "insert (" + yearTaskBean.getTaskName() + ") success";
@@ -97,11 +96,26 @@ public class TaskController {
         return new BaseBean<>(msg);
     }
 
+
+    @PostMapping("/year/insert_year_task_by_map")
+    public BaseBean<String> insertYearTaskByMap(@RequestParam Map<String, Object> map) {
+        logger.info("newInsertYear Task, map.entrySet = " + map.entrySet());
+        String resultMsg = "insert " + map.entrySet();
+        //对请求参数进行手动校验
+        if (map.get("taskName") == null || map.get("target") == null) {
+            resultMsg += " error.";
+            return new BaseBean<>(403, resultMsg, "params error, please check params again.");
+        }
+        yearTaskService.insertYearTaskByMap(map);
+        resultMsg += " successful.";
+        return new BaseBean<>(resultMsg);
+    }
+
     @PutMapping("/year/update_year_task")
     public BaseBean<String> updateYearTask(YearTaskBean yearTaskBean) {
         //todo how to check YearTaskBean???
         //todo use yearTaskBean.id to find the YearTaskBean on the database;then to update content.
-        System.out.println("the params yearTaskBean is: " + yearTaskBean.toString());
+        logger.error("the params yearTaskBean is: " + yearTaskBean.toString());
         //todo updateYearTask 的时候，需要对finish date 进行处理呢。
         yearTaskService.updateYearTask(yearTaskBean);
         return new BaseBean<>("update " + yearTaskBean.getTaskName() + " success");

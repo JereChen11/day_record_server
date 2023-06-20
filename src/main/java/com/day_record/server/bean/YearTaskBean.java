@@ -2,7 +2,10 @@ package com.day_record.server.bean;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
 import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.lang.Nullable;
 
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
@@ -11,22 +14,26 @@ import java.util.Date;
  * @author JereChen
  */
 public class YearTaskBean {
+    @Nullable
     private Long id;
     /**
      * 任务名称
      * 如：练习篮球。
      */
+    @NotBlank(message = "taskName is not blank")
     private String taskName;
     /**
      * 打卡目标天数
      * 如：60，表示打卡目标天数为60天。
      */
+    @NotNull(message = "target not null")
     private Integer target;
 
     /**
      * 打卡进度
      * 如：15，表示打卡了15天。
      */
+    @NotNull(message = "progress not null")
     private Integer progress;
     /**
      * 创建日期
@@ -49,7 +56,7 @@ public class YearTaskBean {
      */
     private Boolean isFinish;
 
-    public YearTaskBean(Long id, String taskName, Integer target, int progress,
+    public YearTaskBean(@Nullable Long id, String taskName, Integer target, int progress,
                         Date createDate, Date finishDate, Boolean isFinish) {
         this.id = id;
         this.taskName = taskName;

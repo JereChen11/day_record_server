@@ -39,7 +39,7 @@ public interface YearTaskMapper {
      * @param conditionMap
      * @return
      */
-    YearTaskBean getYearTaskByMap(Map<String, String> conditionMap);
+    YearTaskBean getYearTaskByMap(Map<String, Object> conditionMap);
 
     /**
      * 插入指定 year task
