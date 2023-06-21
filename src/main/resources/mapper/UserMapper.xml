@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.day_record.server.mapper.UserMapper">
+
+    <select id="getAllUsers" resultType="com.day_record.server.bean.UserBean">
+        SELECT * FROM user_table
+    </select>
+
+    <select id="getUserById" resultType="com.day_record.server.bean.UserBean">
+        SELECT * FROM user_table WHERE id=#{id}
+    </select>
+
+    <select id="getUserByName" resultType="com.day_record.server.bean.UserBean">
+        SELECT * FROM user_table WHERE username=#{username}
+    </select>
+
+    <select id="getUserByNameAndPassword" resultType="com.day_record.server.bean.UserBean">
+        SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
+    </select>
+
+    <select id="getUserByMap" parameterType="java.util.Map" resultType="com.day_record.server.bean.UserBean">
+        SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
+    </select>
+
+    <insert id="insertUser" parameterType="com.day_record.server.bean.UserBean">
+        insert into user_table (id, username, password, introduce, register_date)
+        value (#{id}, #{username}, #{password}, #{introduce}, #{registerDate})
+    </insert>
+
+    <update id="updateUser">
+        update user_table set username=#{username}, password=#{password}, introduce=#{introduce}, register_date=#{registerDate} where id=#{id}
+    </update>
+
+    <delete id="deleteUserById">
+        delete from user_table where id=#{id}
+    </delete>
+
+
+</mapper>
