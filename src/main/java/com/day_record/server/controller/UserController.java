@@ -2,6 +2,7 @@ package com.day_record.server.controller;
 
 import com.day_record.server.bean.BaseBean;
 import com.day_record.server.bean.UserBean;
+import com.day_record.server.common.SqlOperateResult;
 import com.day_record.server.service.UserService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -50,9 +51,41 @@ public class UserController {
     }
 
     @GetMapping("/user/get_user_by_id")
-    public BaseBean<UserBean> login(@RequestParam("id") Long id) {
+    public BaseBean<UserBean> getUserById(@RequestParam("id") Long id) {
         UserBean userBean = userService.getUserById(id);
         return new BaseBean<>(userBean);
+    }
+
+    @PostMapping("/user/update_user_info")
+    public BaseBean<String> updateUserInfo(@RequestParam("id") Long id,
+                                           String username,
+                                           String password,
+                                           String introduce) {
+        logger.info("id = " + id + ", username = " + username + ", password = " + password + ", introduce = " + introduce);
+
+        //todo 疑惑？controller与Service的职责分配问题。一些业务逻辑，我是写在Controller中呢？还是写在Service中呢？
+        UserBean userBean = userService.getUserById(id);
+        logger.info("the User found by id is = " + userBean.toString());
+
+        if (username != null && !username.isBlank()) {
+            userBean.setUsername(username);
+        }
+        if (password != null && !password.isBlank()) {
+            userBean.setPassword(password);
+        }
+        if (introduce != null && !introduce.isBlank()) {
+            userBean.setIntroduce(introduce);
+        }
+
+        logger.info("after set new user info, the new UserInfo = " + userBean.toString());
+
+        String resultMsg = "update successful!";
+        int updateResultReturnBySql = userService.updateUserInfo(userBean);
+        if (updateResultReturnBySql == SqlOperateResult.FAILED) {
+            resultMsg = "update failed!";
+        }
+        logger.info("updateResultReturnBySql = " + updateResultReturnBySql);
+        return new BaseBean<>(resultMsg);
     }
 
 

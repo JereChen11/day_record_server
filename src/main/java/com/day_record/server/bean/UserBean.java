@@ -13,6 +13,22 @@ public class UserBean {
     private String introduce;
     private Date registerDate;
 
+    public UserBean() {
+
+    }
+
+    public UserBean(UserBean userBean) {
+        this(userBean.getId(), userBean.getUsername(), userBean.getPassword(), userBean.getIntroduce(), userBean.getRegisterDate());
+    }
+
+    public UserBean(Long id, String username, String password, String introduce, Date registerDate) {
+        this.id = id;
+        this.username = username;
+        this.password = password;
+        this.introduce = introduce;
+        this.registerDate = registerDate;
+    }
+
     public Long getId() {
         return id;
     }
@@ -51,5 +67,16 @@ public class UserBean {
 
     public void setRegisterDate(Date registerDate) {
         this.registerDate = registerDate;
+    }
+
+    @Override
+    public String toString() {
+        return "UserBean{" +
+                "id=" + id +
+                ", username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", introduce='" + introduce + '\'' +
+                ", registerDate=" + registerDate +
+                '}';
     }
 }

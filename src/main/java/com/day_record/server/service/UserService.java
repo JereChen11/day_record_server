@@ -24,6 +24,13 @@ public interface UserService {
     UserBean login(String name, String password);
 
     /**
+     * 更新用户信息
+     *
+     * @param userBean
+     */
+    int updateUserInfo(UserBean userBean);
+
+    /**
      * 通过指定ID来获取用户信息
      *
      * @param id

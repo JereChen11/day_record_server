@@ -53,7 +53,7 @@ public interface UserMapper {
      *
      * @param userBean
      */
-    void updateUser(UserBean userBean);
+    int updateUser(UserBean userBean);
 
     /**
      * 通过 id 来删除指定用户
