@@ -12,6 +12,8 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 /**
  * @author JereChen
  */
@@ -48,6 +50,11 @@ public class UserController {
         }
         UserBean userBean = userService.login(username, password);
         return new BaseBean<>(userBean);
+    }
+
+    @GetMapping("/user/get_all_users")
+    public BaseBean<List<UserBean>> getUserById() {
+        return new BaseBean<>(userService.getAllUsers());
     }
 
     @GetMapping("/user/get_user_by_id")

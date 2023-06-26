@@ -2,23 +2,23 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.day_record.server.mapper.UserMapper">
 
-    <select id="getAllUsers" resultType="com.day_record.server.bean.UserBean">
+    <select id="getAllUsers" resultMap="UserBeanResultMap">
         SELECT * FROM user_table
     </select>
 
-    <select id="getUserById" resultType="com.day_record.server.bean.UserBean">
+    <select id="getUserById" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE id=#{id}
     </select>
 
-    <select id="getUserByName" resultType="com.day_record.server.bean.UserBean">
+    <select id="getUserByName" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username}
     </select>
 
-    <select id="getUserByNameAndPassword" resultType="com.day_record.server.bean.UserBean">
+    <select id="getUserByNameAndPassword" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
     </select>
 
-    <select id="getUserByMap" parameterType="java.util.Map" resultType="com.day_record.server.bean.UserBean">
+    <select id="getUserByMap" parameterType="java.util.Map" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
     </select>
 
@@ -35,5 +35,12 @@
         delete from user_table where id=#{id}
     </delete>
 
+    <resultMap id="UserBeanResultMap" type="com.day_record.server.bean.UserBean">
+        <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="username" property="username" jdbcType="VARCHAR"/>
+        <result column="password" property="password" jdbcType="VARCHAR"/>
+        <result column="introduce" property="introduce" jdbcType="VARCHAR"/>
+        <result column="register_date" property="registerDate" javaType="DATE"/>
+    </resultMap>
 
 </mapper>

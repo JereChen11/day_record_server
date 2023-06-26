@@ -2,6 +2,8 @@ package com.day_record.server.service;
 
 import com.day_record.server.bean.UserBean;
 
+import java.util.List;
+
 /**
  * @author JereChen
  */
@@ -37,4 +39,11 @@ public interface UserService {
      * @return
      */
     UserBean getUserById(Long id);
+
+    /**
+     * 查询所有用户
+     *
+     * @return
+     */
+    List<UserBean> getAllUsers();
 }

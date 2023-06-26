@@ -9,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * @author JereChen
@@ -49,5 +50,10 @@ public class UserServiceImpl implements UserService {
     @Override
     public UserBean getUserById(Long id) {
         return userMapper.getUserById(id);
+    }
+
+    @Override
+    public List<UserBean> getAllUsers() {
+        return userMapper.getAllUsers();
     }
 }
