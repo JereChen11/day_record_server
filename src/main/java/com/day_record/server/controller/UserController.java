@@ -53,7 +53,8 @@ public class UserController {
     }
 
     @GetMapping("/user/get_all_users")
-    public BaseBean<List<UserBean>> getUserById() {
+    public BaseBean<List<UserBean>> getAllUsers() {
+        logger.debug("test debug log info, get_all_users");
         return new BaseBean<>(userService.getAllUsers());
     }
 

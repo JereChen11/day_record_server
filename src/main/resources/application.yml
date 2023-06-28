@@ -5,10 +5,19 @@ spring:
     username: root  #用户名
     password: 1234qwer  #密码
     driver-class-name: com.mysql.cj.jdbc.Driver  #数据库链接驱动
+#  sql:
+#    init:
+#      schema-locations: classpath:schema.sql
+#      continue-on-error: true
 
 mybatis:
   mapper-locations: classpath:mapper/*.xml  #配置映射文件
   type-aliases-package: com.day_record.server.bean #配置实体类
+
+logging:
+  level:
+    com:
+      day_record: DEBUG
 
 #logging:
 #  file:
