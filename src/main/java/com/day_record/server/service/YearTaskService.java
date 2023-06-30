@@ -10,16 +10,39 @@ import java.util.Map;
  */
 public interface YearTaskService {
 
+    /**
+     * 获取所有的任务
+     *
+     * @return
+     */
     List<YearTaskBean> getAllYearTasks();
 
+    /**
+     * 通过ID获取指定的任务
+     *
+     * @param id
+     * @return
+     */
     YearTaskBean getYearTaskById(Long id);
 
+    /**
+     * 通过打卡任务名来获取指定的任务列表
+     *
+     * @param taskName
+     * @return
+     */
     List<YearTaskBean> getYearTaskByName(String taskName);
 
+    /**
+     * 通过指定的条件来获取相对应的任务
+     *
+     * @param conditionMap
+     * @return
+     */
     YearTaskBean getYearTaskByMap(Map<String, Object> conditionMap);
 
     /**
-     * 插入Task.
+     * 添加任务
      *
      * @param yearTaskBean 有客户端请求参数反序列化而来
      */
@@ -32,7 +55,17 @@ public interface YearTaskService {
      */
     void insertYearTaskByMap(Map<String, Object> insertConditionMap);
 
+    /**
+     * 更新任务
+     *
+     * @param yearTaskBean
+     */
     void updateYearTask(YearTaskBean yearTaskBean);
 
+    /**
+     * 通过ID删除指定任务
+     *
+     * @param id
+     */
     void deleteYearTaskById(Long id);
 }
