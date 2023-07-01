@@ -5,10 +5,10 @@ DROP TABLE IF EXISTS `user_table`;
 
 CREATE TABLE `user_table` (
     `id` bigint NOT NULL AUTO_INCREMENT,
-    `username` varchar(50) NOT NULL,
-    `password` varchar(100) NOT NULL,
-    `introduce` varchar(255) DEFAULT NULL,
-    `register_date` date DEFAULT NULL,
+    `username` varchar(50) NOT NULL COMMENT '用户名',
+    `password` varchar(100) NOT NULL COMMENT '密码',
+    `introduce` varchar(255) DEFAULT NULL COMMENT '简介',
+    `register_date` date DEFAULT NULL COMMENT '注册时间',
     PRIMARY KEY (`id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb3;
 
@@ -26,12 +26,12 @@ DROP TABLE IF EXISTS `year_task`;
 
 CREATE TABLE `year_task` (
     `id` bigint NOT NULL AUTO_INCREMENT,
-    `task_name` varchar(100) NOT NULL,
-    `target` int NOT NULL,
-    `progress` int NOT NULL,
-    `create_date` date DEFAULT NULL,
-    `finish_date` date DEFAULT NULL,
-    `is_finish` tinyint DEFAULT 0,
+    `task_name` varchar(100) NOT NULL COMMENT '任务名',
+    `target` int NOT NULL COMMENT '打卡目标天数',
+    `progress` int NOT NULL COMMENT '打卡进度',
+    `create_date` date DEFAULT NULL COMMENT '创建日期',
+    `finish_date` date DEFAULT NULL COMMENT '介绍日期',
+    `is_finish` tinyint DEFAULT 0 COMMENT '任务是否结束',
     PRIMARY KEY (`id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb3;
 
