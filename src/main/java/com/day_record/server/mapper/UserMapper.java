@@ -14,7 +14,7 @@ public interface UserMapper {
      *
      * @return
      */
-    List<UserBean> getAllUsers();
+    List<UserBean> selectAllUsers();
 
     /**
      * 通过指定ID来查找相对应用户
@@ -22,7 +22,7 @@ public interface UserMapper {
      * @param userId
      * @return
      */
-    UserBean getUserById(Long userId);
+    UserBean selectUserById(Long userId);
 
     /**
      * 通过用户名来查找相对应用户
@@ -30,7 +30,7 @@ public interface UserMapper {
      * @param name
      * @return userBean
      */
-    UserBean getUserByName(String name);
+    UserBean selectUserByName(String name);
 
     /**
      * 通过用户名与密码来查找相对应用户
@@ -39,7 +39,7 @@ public interface UserMapper {
      * @param password
      * @return userBean
      */
-    UserBean getUserByNameAndPassword(String username, String password);
+    UserBean selectUserByNameAndPassword(String username, String password);
 
     /**
      * 插入指定用户

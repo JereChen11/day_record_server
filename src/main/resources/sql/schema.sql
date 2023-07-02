@@ -20,6 +20,21 @@ VALUES (NULL, 'jerechen', '13333', 'Android Engineer', '2023-06-28'),
 
 # ------------------------------------------- end ------------------------------------------
 
+# ----------------------------------- about user_token_table -------------------------------------
+# DROP TABLE IF EXISTS `user_token_table`;
+DROP TABLE IF EXISTS `user_token_table`;
+
+CREATE TABLE `user_token_table` (
+    `user_id` bigint NOT NULL AUTO_INCREMENT COMMENT '用户主键id',
+    `token` varchar(32) NOT NULL COMMENT 'token值(32位字符串)',
+    `update_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'token更新时间',
+    `expire_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP COMMENT 'token过期时间',
+    PRIMARY KEY (`user_id`),
+    UNIQUE KEY (`token`)
+) ENGINE = InnoDB DEFAULT CHARSET = utf8mb3;
+
+# ------------------------------------------- end ------------------------------------------
+
 # ----------------------------------- about year_task -------------------------------------
 #DROP TABLE IF EXISTS `year_task`;
 DROP TABLE IF EXISTS `year_task`;

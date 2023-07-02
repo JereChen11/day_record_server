@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.day_record.server.mapper.UserTokenMapper">
+
+    <select id="selectByUserId" resultMap="UserTokenBeanResultMap">
+        SELECT * FROM user_token_table WHERE user_id=#{userId}
+    </select>
+
+    <select id="selectByToken" resultMap="UserTokenBeanResultMap">
+        SELECT * FROM user_token_table WHERE token=#{token}
+    </select>
+
+    <insert id="insertUserToken" parameterType="com.day_record.server.bean.UserTokenBean">
+        insert into user_token_table (user_id, token, update_time, expire_time)
+        value (#{userId}, #{token}, #{updateTime}, #{expireTime})
+    </insert>
+
+    <update id="updateByUserToken" parameterType="com.day_record.server.bean.UserTokenBean">
+        update user_token_table set user_id=#{userId}, token=#{token}, update_time=#{updateTime}, expire_time=#{expireTime} where user_id=#{userId}
+    </update>
+
+    <delete id="deleteById" parameterType="java.lang.Long">
+        delete from user_token_table where user_id=#{userId}
+    </delete>
+
+    <resultMap id="UserTokenBeanResultMap" type="com.day_record.server.bean.UserTokenBean">
+        <id column="user_id" property="userId" jdbcType="BIGINT"/>
+        <result column="token" property="token" jdbcType="VARCHAR"/>
+        <result column="update_time" property="updateTime" jdbcType="TIMESTAMP"/>
+        <result column="expire_time" property="expireTime" jdbcType="TIMESTAMP"/>
+    </resultMap>
+
+</mapper>

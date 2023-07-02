@@ -20,10 +20,18 @@ public interface UserService {
     /**
      * 登入
      *
-     * @param name
+     * @param username
      * @param password
      */
-    UserBean login(String name, String password);
+    UserBean login(String username, String password);
+
+    /**
+     * 登出
+     *
+     * @param userId
+     * @return
+     */
+    Boolean logout(Long userId);
 
     /**
      * 更新用户信息

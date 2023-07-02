@@ -2,37 +2,38 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.day_record.server.mapper.UserMapper">
 
-    <select id="getAllUsers" resultMap="UserBeanResultMap">
+    <select id="selectAllUsers" resultMap="UserBeanResultMap">
         SELECT * FROM user_table
     </select>
 
-    <select id="getUserById" resultMap="UserBeanResultMap">
+    <select id="selectUserById" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE user_id=#{userId}
     </select>
 
-    <select id="getUserByName" resultMap="UserBeanResultMap">
+    <select id="selectUserByName" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username}
     </select>
 
-    <select id="getUserByNameAndPassword" resultMap="UserBeanResultMap">
+    <select id="selectUserByNameAndPassword" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
     </select>
 
-    <select id="getUserByMap" parameterType="java.util.Map" resultMap="UserBeanResultMap">
+    <select id="selectUserByMap" parameterType="java.util.Map" resultMap="UserBeanResultMap">
         SELECT * FROM user_table WHERE username=#{username} AND password=#{password}
     </select>
 
     <insert id="insertUser" parameterType="com.day_record.server.bean.UserBean">
-        insert into user_table (id, username, password, introduce, register_date)
-        value (#{id}, #{username}, #{password}, #{introduce}, #{registerDate})
+        insert into user_table (user_id, username, password, introduce, register_date)
+        value (#{userId}, #{username}, #{password}, #{introduce}, #{registerDate})
     </insert>
 
-    <update id="updateUser">
-        update user_table set username=#{username}, password=#{password}, introduce=#{introduce}, register_date=#{registerDate} where id=#{id}
+    <update id="updateUser" parameterType="com.day_record.server.bean.UserBean">
+        update user_table set username=#{username}, password=#{password}, introduce=#{introduce}, register_date=#{registerDate}
+        where user_id=#{userId}
     </update>
 
-    <delete id="deleteUserById">
-        delete from user_table where user_id=#{id}
+    <delete id="deleteUserById" parameterType="java.lang.Long" >
+        delete from user_table where user_id=#{userId}
     </delete>
 
     <resultMap id="UserBeanResultMap" type="com.day_record.server.bean.UserBean">

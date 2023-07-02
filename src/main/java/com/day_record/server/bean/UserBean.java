@@ -1,5 +1,8 @@
 package com.day_record.server.bean;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+import org.springframework.format.annotation.DateTimeFormat;
+
 import java.util.Date;
 
 /**
@@ -11,6 +14,8 @@ public class UserBean {
     private String username;
     private String password;
     private String introduce;
+    @DateTimeFormat(pattern = "yyyy-MM-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "GMT+8")
     private Date registerDate;
 
     public UserBean() {
