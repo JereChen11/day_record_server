@@ -59,21 +59,21 @@ public class UserController {
     }
 
     @GetMapping("/user/get_user_by_id")
-    public BaseBean<UserBean> getUserById(@RequestParam("id") Long id) {
-        UserBean userBean = userService.getUserById(id);
+    public BaseBean<UserBean> getUserById(@RequestParam("userId") Long userId) {
+        UserBean userBean = userService.getUserById(userId);
         return new BaseBean<>(userBean);
     }
 
     @PostMapping("/user/update_user_info")
-    public BaseBean<String> updateUserInfo(@RequestParam("id") Long id,
+    public BaseBean<String> updateUserInfo(@RequestParam("userId") Long userId,
                                            String username,
                                            String password,
                                            String introduce) {
-        logger.info("id = " + id + ", username = " + username + ", password = " + password + ", introduce = " + introduce);
+        logger.info("userId = " + userId + ", username = " + username + ", password = " + password + ", introduce = " + introduce);
 
         //todo 疑惑？controller与Service的职责分配问题。一些业务逻辑，我是写在Controller中呢？还是写在Service中呢？
-        UserBean userBean = userService.getUserById(id);
-        logger.info("the User found by id is = " + userBean.toString());
+        UserBean userBean = userService.getUserById(userId);
+        logger.info("the User found by userId is = " + userBean.toString());
 
         if (username != null && !username.isBlank()) {
             userBean.setUsername(username);

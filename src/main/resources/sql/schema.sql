@@ -4,15 +4,15 @@
 DROP TABLE IF EXISTS `user_table`;
 
 CREATE TABLE `user_table` (
-    `id` bigint NOT NULL AUTO_INCREMENT,
+    `user_id` bigint NOT NULL AUTO_INCREMENT,
     `username` varchar(50) NOT NULL COMMENT '用户名',
     `password` varchar(100) NOT NULL COMMENT '密码',
     `introduce` varchar(255) DEFAULT NULL COMMENT '简介',
     `register_date` date DEFAULT NULL COMMENT '注册时间',
-    PRIMARY KEY (`id`)
+    PRIMARY KEY (`user_id`)
 ) ENGINE = InnoDB AUTO_INCREMENT = 4 DEFAULT CHARSET = utf8mb3;
 
-INSERT INTO `user_table` (id, username, password, introduce, register_date)
+INSERT INTO `user_table` (user_id, username, password, introduce, register_date)
 VALUES (NULL, 'jerechen', '13333', 'Android Engineer', '2023-06-28'),
        (NULL, '小帅', 'uuuuuuuuu', 'Farmer', '2023-06-28'),
        (NULL, '大大', '1299', 'Banker', '2023-06-28'),

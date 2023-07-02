@@ -7,7 +7,7 @@ import java.util.Date;
  */
 public class UserBean {
 
-    private Long id;
+    private Long userId;
     private String username;
     private String password;
     private String introduce;
@@ -18,23 +18,23 @@ public class UserBean {
     }
 
     public UserBean(UserBean userBean) {
-        this(userBean.getId(), userBean.getUsername(), userBean.getPassword(), userBean.getIntroduce(), userBean.getRegisterDate());
+        this(userBean.getUserId(), userBean.getUsername(), userBean.getPassword(), userBean.getIntroduce(), userBean.getRegisterDate());
     }
 
-    public UserBean(Long id, String username, String password, String introduce, Date registerDate) {
-        this.id = id;
+    public UserBean(Long userId, String username, String password, String introduce, Date registerDate) {
+        this.userId = userId;
         this.username = username;
         this.password = password;
         this.introduce = introduce;
         this.registerDate = registerDate;
     }
 
-    public Long getId() {
-        return id;
+    public Long getUserId() {
+        return userId;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setUserId(Long userId) {
+        this.userId = userId;
     }
 
     public String getUsername() {
@@ -72,7 +72,7 @@ public class UserBean {
     @Override
     public String toString() {
         return "UserBean{" +
-                "id=" + id +
+                "id=" + userId +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", introduce='" + introduce + '\'' +

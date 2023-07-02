@@ -35,10 +35,10 @@ public interface UserService {
     /**
      * 通过指定ID来获取用户信息
      *
-     * @param id
+     * @param userId
      * @return
      */
-    UserBean getUserById(Long id);
+    UserBean getUserById(Long userId);
 
     /**
      * 查询所有用户

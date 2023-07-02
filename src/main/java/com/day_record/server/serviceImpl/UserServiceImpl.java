@@ -48,8 +48,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public UserBean getUserById(Long id) {
-        return userMapper.getUserById(id);
+    public UserBean getUserById(Long userId) {
+        return userMapper.getUserById(userId);
     }
 
     @Override

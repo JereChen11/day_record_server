@@ -19,10 +19,10 @@ public interface UserMapper {
     /**
      * 通过指定ID来查找相对应用户
      *
-     * @param id
+     * @param userId
      * @return
      */
-    UserBean getUserById(Long id);
+    UserBean getUserById(Long userId);
 
     /**
      * 通过用户名来查找相对应用户
@@ -58,8 +58,8 @@ public interface UserMapper {
     /**
      * 通过 id 来删除指定用户
      *
-     * @param id
+     * @param userId
      */
-    void deleteUserById(Long id);
+    void deleteUserById(Long userId);
 
 }
