@@ -2,6 +2,7 @@ package com.day_record.server.serviceImpl;
 
 import com.day_record.server.bean.UserBean;
 import com.day_record.server.bean.UserTokenBean;
+import com.day_record.server.config.exception.BizException;
 import com.day_record.server.mapper.UserMapper;
 import com.day_record.server.mapper.UserTokenMapper;
 import com.day_record.server.service.UserService;
@@ -19,7 +20,7 @@ import java.util.List;
  */
 @Service
 public class UserServiceImpl implements UserService {
-    Logger logger = LoggerFactory.getLogger(getClass());
+    private Logger logger = LoggerFactory.getLogger(getClass());
 
     @Autowired
     private UserMapper userMapper;
@@ -32,7 +33,7 @@ public class UserServiceImpl implements UserService {
 
         if (userMapper.selectUserByName(name) != null) {
             logger.info(name + " 已存在，请更换一个新昵称");
-            throw new RuntimeException(name + " 已存在，请更换一个新昵称");
+            throw new BizException(name + " 已存在，请更换一个新昵称");
         }
 
         UserBean userBean = new UserBean();
@@ -56,6 +57,7 @@ public class UserServiceImpl implements UserService {
         //接着去更新一下UserToken信息
         if (userBean != null) {
             String newToken = TokenTool.getNewToken(String.valueOf(System.currentTimeMillis()), userBean.getUserId());
+            logger.info("newToken = " + newToken + ", newToken.length() = " + newToken.length());
             UserTokenBean userTokenBean = userTokenMapper.selectByUserId(userBean.getUserId());
             //当前时间
             Date updateTime = new Date();
@@ -69,14 +71,16 @@ public class UserServiceImpl implements UserService {
                 userTokenBean.setUpdateTime(updateTime);
                 userTokenBean.setExpireTime(expireTime);
                 //新增一条userToken数据
-                logger.error("jjjjj userTokenBean = " + userTokenBean.toString());
+                logger.error("userTokenBean 不存在，插入 userTokenBean = " + userTokenBean.toString());
                 userTokenMapper.insertUserToken(userTokenBean);
             } else {
+
                 //否则更新Token、updateTime、expireTime信息
                 userTokenBean.setToken(newToken);
                 userTokenBean.setUpdateTime(updateTime);
                 userTokenBean.setExpireTime(expireTime);
                 //更新userTokenBean
+                logger.error("userTokenBean 已经存在，更新 userTokenBean = " + userTokenBean.toString());
                 userTokenMapper.updateByUserToken(userTokenBean);
             }
         }

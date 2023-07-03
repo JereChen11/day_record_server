@@ -1,5 +1,7 @@
 package com.day_record.server.bean;
 
+import com.day_record.server.config.exception.BaseErrorInfo;
+
 /**
  * @author JereChen
  */
@@ -8,6 +10,10 @@ public class BaseBean<T> {
     T data;
     Long dts;
     String msg;
+
+    public BaseBean() {
+
+    }
 
     public BaseBean(T data) {
         this.code = 200;
@@ -21,6 +27,47 @@ public class BaseBean<T> {
         this.data = data;
         this.dts = System.currentTimeMillis();
         this.msg = msg;
+    }
+
+    public BaseBean(BaseErrorInfo baseErrorInfo) {
+        this.code = baseErrorInfo.getResultErrorCode();
+        this.msg = baseErrorInfo.getResultErrorMsg();
+    }
+
+    public static BaseBean success(Object data) {
+        BaseBean bb = new BaseBean();
+        bb.setCode(200);
+        bb.setData(data);
+        bb.setDts(System.currentTimeMillis());
+        bb.setMsg("success");
+        return bb;
+    }
+
+    public static BaseBean error(BaseErrorInfo baseErrorInfo) {
+        BaseBean bb = new BaseBean();
+        bb.setCode(baseErrorInfo.getResultErrorCode());
+        bb.setMsg(baseErrorInfo.getResultErrorMsg());
+        bb.setData(null);
+        bb.setDts(System.currentTimeMillis());
+        return bb;
+    }
+
+    public static BaseBean error(Integer code, String message) {
+        BaseBean bb = new BaseBean();
+        bb.setCode(code);
+        bb.setMsg(message);
+        bb.setData(null);
+        bb.setDts(System.currentTimeMillis());
+        return bb;
+    }
+
+    public static BaseBean error(String message) {
+        BaseBean bb = new BaseBean();
+        bb.setCode(-1);
+        bb.setMsg(message);
+        bb.setData(null);
+        bb.setDts(System.currentTimeMillis());
+        return bb;
     }
 
     public int getCode() {
